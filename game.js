@@ -3,16 +3,14 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var gamePattern = [];
 var userClickedPattern =[];
 
-$(".btn").click(function(){
-  var userChosenColour = $(this).attr('id');
-  userClickedPattern.push(userChosenColour);
+var level = 0;
 
-  playSound(userChosenColour);
+var startGame = true;
 
-  animatePress(this);
-});
-
+// Game
 function nextSequence(){
+
+  level++;
 
   var randomNumber = Math.floor(Math.random() * 4);
   
@@ -26,16 +24,40 @@ function nextSequence(){
   audio.play();
 }
 
+//play audio function
 function playSound(name){
   var audio = new Audio("sounds/" + name + ".mp3");
   audio.play();
 }
 
+// Event handler to add the color into the empty array
+$(".btn").click(function(){
+  var userChosenColour = $(this).attr('id');
+  userClickedPattern.push(userChosenColour);
+
+  playSound(userChosenColour);
+
+  animatePress(this);
+});
+
+//animation function
 function animatePress(currentColour){
 
   $(currentColour).addClass("pressed");
 
   setTimeout(function(){
     $(currentColour).removeClass("pressed");
-  }, 400);
+  }, 100);
 }
+
+// start the game
+$(document).keydown(function (e) { 
+  
+  if ((e.key === "A" || e.key === "a") && startGame){
+    nextSequence();
+    $("h1").text("Level " + level);
+    
+    startGame = false;
+  }
+});
+
