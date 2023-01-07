@@ -7,6 +7,7 @@ body {
   font-family: 'Press Start 2P', cursive;
   font-size: 3rem;
   margin:  5%;
+  padding-top: 13rem;
   color: #FEF2BF;
 }
 
@@ -22,7 +23,7 @@ body {
   display: inline-block;
   height: 200px;
   width: 200px;
-  border: 10px solid black;
+  border: 5px solid black;
   border-radius: 20%;
 }
 
